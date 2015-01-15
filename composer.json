@@ -1,0 +1,26 @@
+{
+  "name": "remdan/openweathermap-connector",
+  "type": "library",
+  "description": "OpenWeatherMap PHP library.",
+  "keywords": ["OpenWeatherMap"],
+  "homepage": "https://github.com/remdan/openweathermap-connector",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Remdan",
+      "email": "info@remdan.co"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "egeloen/http-adapter": "0.5.*"
+  },
+  "require-dev": {
+  },
+  "suggest": {
+    "guzzle/guzzle": "3.9.*"
+  },
+  "autoload": {
+    "psr-0": { "OpenweathermapConnector": "src/" }
+  }
+}
