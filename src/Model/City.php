@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenweathermapConnector\Model;
+namespace Remdan\OpenweathermapConnector\Model;
 
 final class City
 {

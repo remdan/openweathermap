@@ -1,4 +1,5 @@
 <?php
 
-$loader = require __DIR__ . '/../vendor/autoload.php';
-$loader->add('OpenweathermapConnector\Tests', __DIR__);
+$loader = require __DIR__.'/../vendor/autoload.php';
+
+$loader->addPsr4('Remdan\\Tests\\OpenweathermapConnector\\', __DIR__);

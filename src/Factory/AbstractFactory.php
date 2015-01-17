@@ -1,18 +1,18 @@
 <?php
 
-namespace OpenweathermapConnector\Factory;
+namespace Remdan\OpenweathermapConnector\Factory;
 
-use OpenweathermapConnector\Model\City;
-use OpenweathermapConnector\Model\Clouds;
-use OpenweathermapConnector\Model\Coord;
-use OpenweathermapConnector\Model\ForecastDailyEntry;
-use OpenweathermapConnector\Model\ForecastEntry;
-use OpenweathermapConnector\Model\Main;
-use OpenweathermapConnector\Model\Rain;
-use OpenweathermapConnector\Model\Snow;
-use OpenweathermapConnector\Model\Temp;
-use OpenweathermapConnector\Model\Weather;
-use OpenweathermapConnector\Model\Wind;
+use Remdan\OpenweathermapConnector\Model\City;
+use Remdan\OpenweathermapConnector\Model\Clouds;
+use Remdan\OpenweathermapConnector\Model\Coord;
+use Remdan\OpenweathermapConnector\Model\ForecastDailyEntry;
+use Remdan\OpenweathermapConnector\Model\ForecastEntry;
+use Remdan\OpenweathermapConnector\Model\Main;
+use Remdan\OpenweathermapConnector\Model\Rain;
+use Remdan\OpenweathermapConnector\Model\Snow;
+use Remdan\OpenweathermapConnector\Model\Temp;
+use Remdan\OpenweathermapConnector\Model\Weather;
+use Remdan\OpenweathermapConnector\Model\Wind;
 
 Abstract class AbstractFactory
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace OpenweathermapConnector\Model;
+namespace Remdan\OpenweathermapConnector\Model;
 
-use OpenweathermapConnector\Model\Coord;
-use OpenweathermapConnector\Model\Main;
-use OpenweathermapConnector\Model\Wind;
-use OpenweathermapConnector\Model\Clouds;
-use OpenweathermapConnector\Model\Weather;
-use OpenweathermapConnector\Model\Rain;
-use OpenweathermapConnector\Model\Snow;
+use Remdan\OpenweathermapConnector\Model\Coord;
+use Remdan\OpenweathermapConnector\Model\Main;
+use Remdan\OpenweathermapConnector\Model\Wind;
+use Remdan\OpenweathermapConnector\Model\Clouds;
+use Remdan\OpenweathermapConnector\Model\Weather;
+use Remdan\OpenweathermapConnector\Model\Rain;
+use Remdan\OpenweathermapConnector\Model\Snow;
 
 final class CurrentWeather
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace OpenweathermapConnector\Factory;
+namespace Remdan\OpenweathermapConnector\Factory;
 
-use OpenweathermapConnector\Factory\AbstractFactory;
-use OpenweathermapConnector\Model\Coord;
-use OpenweathermapConnector\Model\CurrentWeather;
+use Remdan\OpenweathermapConnector\Factory\AbstractFactory;
+use Remdan\OpenweathermapConnector\Model\Coord;
+use Remdan\OpenweathermapConnector\Model\CurrentWeather;
 
 final class CurrentWeatherFactory extends AbstractFactory
 {

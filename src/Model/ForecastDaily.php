@@ -1,11 +1,11 @@
 <?php
 
-namespace OpenweathermapConnector\Model;
+namespace Remdan\OpenweathermapConnector\Model;
 
-use OpenweathermapConnector\Model\City;
-use OpenweathermapConnector\Model\ForecastEntry;
+use Remdan\OpenweathermapConnector\Model\City;
+use Remdan\OpenweathermapConnector\Model\ForecastDailyEntry;
 
-final class Forecast
+final class ForecastDaily
 {
     /**
      * @var int
@@ -28,7 +28,7 @@ final class Forecast
     private $city;
 
     /**
-     * @var ForecastEntry[]
+     * @var ForecastDailyEntry[]
      */
     private $entries;
 

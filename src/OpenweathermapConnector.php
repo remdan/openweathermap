@@ -1,11 +1,11 @@
 <?php
 
-namespace OpenweathermapConnector;
+namespace Remdan\OpenweathermapConnector;
 
 use Ivory\HttpAdapter\HttpAdapterInterface;
-use OpenweathermapConnector\Factory\CurrentWeatherFactory;
-use OpenweathermapConnector\Factory\ForecastDailyFactory;
-use OpenweathermapConnector\Factory\ForecastFactory;
+use Remdan\OpenweathermapConnector\Factory\CurrentWeatherFactory;
+use Remdan\OpenweathermapConnector\Factory\ForecastDailyFactory;
+use Remdan\OpenweathermapConnector\Factory\ForecastFactory;
 
 class OpenweathermapConnector
 {
