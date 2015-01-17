@@ -21,6 +21,6 @@
     "guzzle/guzzle": "3.9.*"
   },
   "autoload": {
-    "psr-0": {"OpenweathermapConnector": "src/"}
+    "psr-0": {"Remdan/OpenweathermapConnector": "src/"}
   }
 }

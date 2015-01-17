@@ -42,9 +42,9 @@ class OpenweathermapConnector
      */
     public function __construct(
         HttpAdapterInterface $httpAdapter,
+        $apiKey = null,
         $locale = null,
-        $unitsFormat = null,
-        $apiKey = null
+        $unitsFormat = null
     ) {
         $this->httpAdapter = $httpAdapter;
         $this->locale = $locale;
@@ -85,11 +85,27 @@ class OpenweathermapConnector
     }
 
     /**
+     * @param $local
+     */
+    public function setLocal($local)
+    {
+        $this->locale = $local;
+    }
+
+    /**
      * @return null|string
      */
     public function getUnitsFormat()
     {
         return $this->unitsFormat;
+    }
+
+    /**
+     * @param $unitsFormat
+     */
+    public function setUnitsFormat($unitsFormat)
+    {
+        $this->unitsFormat = $unitsFormat;
     }
 
     /**
