@@ -52,7 +52,7 @@ final class CurrentWeatherFactory extends AbstractFactory
 
         $weather = AbstractFactory::readStringValue($result, 'weather');
         if (is_array($weather)) {
-            $currentWeather->setWeather(AbstractFactory::createWeather($weather[0]));
+            $currentWeather->setWeather(AbstractFactory::createWeather($weather));
         }
 
         return $currentWeather;

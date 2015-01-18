@@ -122,10 +122,10 @@ Abstract class AbstractFactory
     final static function createWeather(array $data)
     {
         $weather = new Weather(
-            self::readStringValue($data, 'id'),
-            self::readStringValue($data, 'main'),
-            self::readStringValue($data, 'description'),
-            self::readStringValue($data, 'icon')
+            self::readStringValue($data[0], 'id'),
+            self::readStringValue($data[0], 'main'),
+            self::readStringValue($data[0], 'description'),
+            self::readStringValue($data[0], 'icon')
         );
 
         return $weather;

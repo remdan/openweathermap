@@ -256,7 +256,7 @@ class OpenweathermapConnector
      */
     public function getForecastDailyByCityName($name, $cnt)
     {
-        $query = $this->getApiUrl() . 'forecast';
+        $query = $this->getApiUrl() . 'forecast' . DIRECTORY_SEPARATOR . 'daily';
         $query = sprintf('%s?q=%s', $query, $name);
         $query = sprintf('%s&cnt=%s', $query, $cnt);
 
@@ -270,7 +270,7 @@ class OpenweathermapConnector
      */
     public function getForecastDailyByCityId($id, $cnt)
     {
-        $query = $this->getApiUrl() . 'forecast';
+        $query = $this->getApiUrl() . 'forecast' . DIRECTORY_SEPARATOR . 'daily';
         $query = sprintf('%s?id=%s', $query, $id);
         $query = sprintf('%s&cnt=%s', $query, $cnt);
 
@@ -285,7 +285,7 @@ class OpenweathermapConnector
      */
     public function getForecastDailyByCoordinates($lat, $lon, $cnt)
     {
-        $query = $this->getApiUrl() . 'forecast';
+        $query = $this->getApiUrl() . 'forecast' . DIRECTORY_SEPARATOR . 'daily';
         $query = sprintf('%s?lat=%s&lon=%s', $query, $lat, $lon);
         $query = sprintf('%s&cnt=%s', $query, $cnt);
 
