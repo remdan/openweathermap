@@ -3,11 +3,12 @@
 namespace Remdan\OpenweathermapConnector\Factory;
 
 use Remdan\OpenweathermapConnector\Factory\AbstractFactory;
+use Remdan\OpenweathermapConnector\Factory\FactoryInterface;
 use Remdan\OpenweathermapConnector\Model\Coord;
 use Remdan\OpenweathermapConnector\Model\CurrentWeather;
 use Remdan\OpenweathermapConnector\Model\Forecast;
 
-final class ForecastFactory extends AbstractFactory
+final class ForecastFactory extends AbstractFactory implements FactoryInterface
 {
     /**
      * @param array $result

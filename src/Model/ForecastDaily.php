@@ -7,6 +7,8 @@ use Remdan\OpenweathermapConnector\Model\ForecastDailyEntry;
 
 final class ForecastDaily
 {
+    const FACTORY_KEY =  'forecastDaily';
+
     /**
      * @var int
      */

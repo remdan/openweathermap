@@ -12,6 +12,8 @@ use Remdan\OpenweathermapConnector\Model\Snow;
 
 final class CurrentWeather
 {
+    const FACTORY_KEY =  'currentWeather';
+
     /**
      * @var int
      */

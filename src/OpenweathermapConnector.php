@@ -4,8 +4,13 @@ namespace Remdan\OpenweathermapConnector;
 
 use Ivory\HttpAdapter\HttpAdapterInterface;
 use Remdan\OpenweathermapConnector\Factory\CurrentWeatherFactory;
+use Remdan\OpenweathermapConnector\Factory\FactoryInterface;
 use Remdan\OpenweathermapConnector\Factory\ForecastDailyFactory;
 use Remdan\OpenweathermapConnector\Factory\ForecastFactory;
+use Remdan\OpenweathermapConnector\Manager\FactoryManagerInterface;
+use Remdan\OpenweathermapConnector\Model\CurrentWeather;
+use Remdan\OpenweathermapConnector\Model\Forecast;
+use Remdan\OpenweathermapConnector\Model\ForecastDaily;
 
 class OpenweathermapConnector
 {
@@ -13,6 +18,11 @@ class OpenweathermapConnector
      * @var HttpAdapterInterface
      */
     protected $httpAdapter;
+
+    /**
+     * @var FactoryManagerInterface
+     */
+    protected $factoryManager;
 
     /**
      * @var string
@@ -36,17 +46,20 @@ class OpenweathermapConnector
 
     /**
      * @param HttpAdapterInterface $httpAdapter
+     * @param FactoryManagerInterface $factoryManager
+     * @param null $apiKey
      * @param null $locale
      * @param null $unitsFormat
-     * @param null $apiKey
      */
     public function __construct(
         HttpAdapterInterface $httpAdapter,
+        FactoryManagerInterface $factoryManager,
         $apiKey = null,
         $locale = null,
         $unitsFormat = null
     ) {
         $this->httpAdapter = $httpAdapter;
+        $this->factoryManager = $factoryManager;
         $this->locale = $locale;
         $this->unitsFormat = $unitsFormat;
         $this->apiKey = $apiKey;
@@ -61,6 +74,30 @@ class OpenweathermapConnector
     }
 
     /**
+     * @param HttpAdapterInterface $httpAdapter
+     */
+    public function setHttpAdapter(HttpAdapterInterface $httpAdapter)
+    {
+        $this->httpAdapter = $httpAdapter;
+    }
+
+    /**
+     * @return FactoryManagerInterface
+     */
+    public function getFactoryManager()
+    {
+        return $this->factoryManager;
+    }
+
+    /**
+     * @param FactoryManagerInterface $factoryManager
+     */
+    public function setFactoryManager(FactoryManagerInterface $factoryManager)
+    {
+        $this->factoryManager = $factoryManager;
+    }
+
+    /**
      * @return string
      */
     public function getApiUrl()
@@ -69,11 +106,27 @@ class OpenweathermapConnector
     }
 
     /**
+     * @param $apiUrl
+     */
+    public function setApiUrl($apiUrl)
+    {
+        $this->apiUrl = $apiUrl;
+    }
+
+    /**
      * @return null|string
      */
     public function getApiKey()
     {
         return $this->apiKey;
+    }
+
+    /**
+     * @param $apiKey
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
     }
 
     /**
@@ -109,70 +162,85 @@ class OpenweathermapConnector
     }
 
     /**
-     * @param $query
+     * @param $url
      * @return string
      */
-    protected function buildQuery($query)
+    protected function reworkUrl($url)
     {
         if (null !== $this->getLocale()) {
-            $query = sprintf('%s&lang=%s', $query, $this->getLocale());
+            $url = sprintf('%s&lang=%s', $url, $this->getLocale());
         }
 
         if (null !== $this->getUnitsFormat()) {
-            $query = sprintf('%s&units=%s', $query, $this->getUnitsFormat());
+            $url = sprintf('%s&units=%s', $url, $this->getUnitsFormat());
         }
 
         if (null !== $this->apiKey) {
-            $query = sprintf('%s&APPID=%s', $query, $this->getApiKey());
+            $url = sprintf('%s&APPID=%s', $url, $this->getApiKey());
         }
 
-        return $query;
+        return $url;
     }
 
     /**
-     * @param $query
+     * @param $url
      * @return string
      */
-    public function executeQuery($query)
+    public function executeUrl($url)
     {
-        $query = $this->buildQuery($query);
+        $url = $this->reworkUrl($url);
 
-        $content = (string)$this->getHttpAdapter()->get($query)->getBody();
+        $content = (string)$this->getHttpAdapter()->get($url)->getBody();
 
         return $content;
     }
 
     /**
-     * @param $query
-     * @return Model\CurrentWeather
+     * @param $url
+     * @param FactoryInterface $modelFactory
+     * @return mixed
      */
-    public function getCurrentWeatherResult($query)
+    public function getCurrentWeatherResult($url, FactoryInterface $modelFactory = null)
     {
-        $data = $this->executeQuery($query);
+        $data = $this->executeUrl($url);
 
-        return CurrentWeatherFactory::createFromArray(json_decode($data, true));
+        if ($modelFactory) {
+            return $modelFactory->createFromArray(json_decode($data, true));
+        }
+
+        return $this->getFactoryManager()->getFactory(CurrentWeather::FACTORY_KEY)->createFromArray(json_decode($data, true));
     }
 
     /**
-     * @param $query
-     * @return Model\CurrentWeather
+     * @param $url
+     * @param FactoryInterface $modelFactory
+     * @return mixed
      */
-    public function getForecastResult($query)
+    public function getForecastResult($url, FactoryInterface $modelFactory = null)
     {
-        $data = $this->executeQuery($query);
+        $data = $this->executeUrl($url);
 
-        return ForecastFactory::createFromArray(json_decode($data, true));
+        if ($modelFactory) {
+            return $modelFactory->createFromArray(json_decode($data, true));
+        }
+
+        return $this->getFactoryManager()->getFactory(Forecast::FACTORY_KEY)->createFromArray(json_decode($data, true));
     }
 
     /**
-     * @param $query
-     * @return Model\CurrentWeather
+     * @param $url
+     * @param FactoryInterface $modelFactory
+     * @return mixed
      */
-    public function getForecastDailyResult($query)
+    public function getForecastDailyResult($url, FactoryInterface $modelFactory = null)
     {
-        $data = $this->executeQuery($query);
+        $data = $this->executeUrl($url);
 
-        return ForecastDailyFactory::createFromArray(json_decode($data, true));
+        if ($modelFactory) {
+            return $modelFactory->createFromArray(json_decode($data, true));
+        }
+
+        return $this->getFactoryManager()->getFactory(ForecastDaily::FACTORY_KEY)->createFromArray(json_decode($data, true));
     }
 
     /**
