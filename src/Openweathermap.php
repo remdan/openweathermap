@@ -1,18 +1,18 @@
 <?php
 
-namespace Remdan\OpenweathermapConnector;
+namespace Remdan\Openweathermap;
 
 use Ivory\HttpAdapter\HttpAdapterInterface;
-use Remdan\OpenweathermapConnector\Factory\CurrentWeatherFactory;
-use Remdan\OpenweathermapConnector\Factory\FactoryInterface;
-use Remdan\OpenweathermapConnector\Factory\ForecastDailyFactory;
-use Remdan\OpenweathermapConnector\Factory\ForecastFactory;
-use Remdan\OpenweathermapConnector\Manager\FactoryManagerInterface;
-use Remdan\OpenweathermapConnector\Model\CurrentWeather;
-use Remdan\OpenweathermapConnector\Model\Forecast;
-use Remdan\OpenweathermapConnector\Model\ForecastDaily;
+use Remdan\Openweathermap\Factory\CurrentWeatherFactory;
+use Remdan\Openweathermap\Factory\FactoryInterface;
+use Remdan\Openweathermap\Factory\ForecastDailyFactory;
+use Remdan\Openweathermap\Factory\ForecastFactory;
+use Remdan\Openweathermap\Factory\Registry\FactoryRegistryInterface;
+use Remdan\Openweathermap\Model\CurrentWeather;
+use Remdan\Openweathermap\Model\Forecast;
+use Remdan\Openweathermap\Model\ForecastDaily;
 
-class OpenweathermapConnector
+class Openweathermap
 {
     /**
      * @var HttpAdapterInterface
@@ -20,9 +20,9 @@ class OpenweathermapConnector
     protected $httpAdapter;
 
     /**
-     * @var FactoryManagerInterface
+     * @var FactoryRegistryInterface
      */
-    protected $factoryManager;
+    protected $factoryRegistery;
 
     /**
      * @var string
@@ -46,23 +46,14 @@ class OpenweathermapConnector
 
     /**
      * @param HttpAdapterInterface $httpAdapter
-     * @param FactoryManagerInterface $factoryManager
-     * @param null $apiKey
-     * @param null $locale
-     * @param null $unitsFormat
+     * @param FactoryRegistryInterface $factoryRegistery
      */
     public function __construct(
         HttpAdapterInterface $httpAdapter,
-        FactoryManagerInterface $factoryManager,
-        $apiKey = null,
-        $locale = null,
-        $unitsFormat = null
+        FactoryRegistryInterface $factoryRegistery
     ) {
         $this->httpAdapter = $httpAdapter;
-        $this->factoryManager = $factoryManager;
-        $this->locale = $locale;
-        $this->unitsFormat = $unitsFormat;
-        $this->apiKey = $apiKey;
+        $this->factoryRegistery = $factoryRegistery;
     }
 
     /**
@@ -82,19 +73,19 @@ class OpenweathermapConnector
     }
 
     /**
-     * @return FactoryManagerInterface
+     * @return FactoryRegistryInterface
      */
-    public function getFactoryManager()
+    public function getFactoryRegistery()
     {
-        return $this->factoryManager;
+        return $this->factoryRegistery;
     }
 
     /**
-     * @param FactoryManagerInterface $factoryManager
+     * @param FactoryRegistryInterface $factoryRegistery
      */
-    public function setFactoryManager(FactoryManagerInterface $factoryManager)
+    public function setFactoryRegistery(FactoryRegistryInterface $factoryRegistery)
     {
-        $this->factoryManager = $factoryManager;
+        $this->factoryRegistery = $factoryRegistery;
     }
 
     /**
@@ -204,11 +195,11 @@ class OpenweathermapConnector
     {
         $data = $this->executeUrl($url);
 
-        if ($modelFactory) {
-            return $modelFactory->createFromArray(json_decode($data, true));
+        if (!$modelFactory) {
+            $modelFactory = $this->getFactoryRegistery()->getFactory(CurrentWeather::FACTORY_KEY);
         }
 
-        return $this->getFactoryManager()->getFactory(CurrentWeather::FACTORY_KEY)->createFromArray(json_decode($data, true));
+        return $modelFactory->createFromArray(json_decode($data, true));
     }
 
     /**
@@ -220,11 +211,11 @@ class OpenweathermapConnector
     {
         $data = $this->executeUrl($url);
 
-        if ($modelFactory) {
-            return $modelFactory->createFromArray(json_decode($data, true));
+        if (!$modelFactory) {
+            $modelFactory =  $this->getFactoryRegistery()->getFactory(Forecast::FACTORY_KEY);
         }
 
-        return $this->getFactoryManager()->getFactory(Forecast::FACTORY_KEY)->createFromArray(json_decode($data, true));
+        return $modelFactory->createFromArray(json_decode($data, true));
     }
 
     /**
@@ -236,11 +227,11 @@ class OpenweathermapConnector
     {
         $data = $this->executeUrl($url);
 
-        if ($modelFactory) {
-            return $modelFactory->createFromArray(json_decode($data, true));
+        if (!$modelFactory) {
+            $modelFactory = $this->getFactoryRegistery()->getFactory(ForecastDaily::FACTORY_KEY);
         }
 
-        return $this->getFactoryManager()->getFactory(ForecastDaily::FACTORY_KEY)->createFromArray(json_decode($data, true));
+        return $modelFactory->createFromArray(json_decode($data, true));
     }
 
     /**

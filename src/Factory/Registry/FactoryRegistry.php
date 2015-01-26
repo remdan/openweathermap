@@ -1,17 +1,17 @@
 <?php
 
-namespace Remdan\OpenweathermapConnector\Manager;
+namespace Remdan\Openweathermap\Factory\Registry;
 
-use Remdan\OpenweathermapConnector\Manager\FactoryManagerInterface;
-use Remdan\OpenweathermapConnector\Factory\FactoryInterface;
-use Remdan\OpenweathermapConnector\Model\CurrentWeather;
-use Remdan\OpenweathermapConnector\Model\Forecast;
-use Remdan\OpenweathermapConnector\Model\ForecastDaily;
-use Remdan\OpenweathermapConnector\Factory\CurrentWeatherFactory;
-use Remdan\OpenweathermapConnector\Factory\ForecastFactory;
-use Remdan\OpenweathermapConnector\Factory\ForecastDailyFactory;
+use Remdan\Openweathermap\Factory\Registry\FactoryRegistryInterface;
+use Remdan\Openweathermap\Factory\FactoryInterface;
+use Remdan\Openweathermap\Model\CurrentWeather;
+use Remdan\Openweathermap\Model\Forecast;
+use Remdan\Openweathermap\Model\ForecastDaily;
+use Remdan\Openweathermap\Factory\CurrentWeatherFactory;
+use Remdan\Openweathermap\Factory\ForecastFactory;
+use Remdan\Openweathermap\Factory\ForecastDailyFactory;
 
-class FactoryManager implements FactoryManagerInterface
+class FactoryRegistry implements FactoryRegistryInterface
 {
     /**
      * @var array|FactoryInterface[]

@@ -1,9 +1,9 @@
 <?php
 
-namespace Remdan\OpenweathermapConnector\Model;
+namespace Remdan\Openweathermap\Model;
 
-use Remdan\OpenweathermapConnector\Model\City;
-use Remdan\OpenweathermapConnector\Model\ForecastEntry;
+use Remdan\Openweathermap\Model\City;
+use Remdan\Openweathermap\Model\ForecastEntry;
 
 final class Forecast
 {

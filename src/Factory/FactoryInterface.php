@@ -1,6 +1,6 @@
 <?php
 
-namespace Remdan\OpenweathermapConnector\Factory;
+namespace Remdan\Openweathermap\Factory;
 
 interface FactoryInterface
 {

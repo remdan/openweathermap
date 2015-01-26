@@ -1,9 +1,8 @@
 {
-  "name": "remdan/openweathermap-connector",
+  "name": "remdan/openweathermap",
   "type": "library",
   "description": "OpenWeatherMap PHP library.",
   "keywords": ["OpenWeatherMap"],
-  "homepage": "https://github.com/remdan/openweathermap-connector",
   "license": "MIT",
   "authors": [
     {
@@ -21,6 +20,6 @@
     "guzzle/guzzle": "3.9.*"
   },
   "autoload": {
-    "psr-4": { "Remdan\\OpenweathermapConnector\\": "src/" }
+    "psr-4": { "Remdan\\Openweathermap\\": "src/" }
   }
 }

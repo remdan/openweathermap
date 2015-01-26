@@ -1,10 +1,10 @@
 <?php
 
-namespace Remdan\OpenweathermapConnector\Manager;
+namespace Remdan\Openweathermap\Factory\Registry;
 
-use Remdan\OpenweathermapConnector\Factory\FactoryInterface;
+use Remdan\Openweathermap\Factory\FactoryInterface;
 
-interface FactoryManagerInterface
+interface FactoryRegistryInterface
 {
     /**
      * @return array|FactoryInterface[]

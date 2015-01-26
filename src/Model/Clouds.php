@@ -1,6 +1,6 @@
 <?php
 
-namespace Remdan\OpenweathermapConnector\Model;
+namespace Remdan\Openweathermap\Model;
 
 class Clouds
 {

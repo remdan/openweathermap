@@ -1,9 +1,9 @@
 <?php
 
-namespace Remdan\OpenweathermapConnector\Model;
+namespace Remdan\Openweathermap\Model;
 
-use Remdan\OpenweathermapConnector\Model\Weather;
-use Remdan\OpenweathermapConnector\Model\Temp;
+use Remdan\Openweathermap\Model\Weather;
+use Remdan\Openweathermap\Model\Temp;
 
 final class ForecastDailyEntry
 {

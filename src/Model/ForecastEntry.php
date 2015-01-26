@@ -1,13 +1,13 @@
 <?php
 
-namespace Remdan\OpenweathermapConnector\Model;
+namespace Remdan\Openweathermap\Model;
 
-use Remdan\OpenweathermapConnector\Model\Main;
-use Remdan\OpenweathermapConnector\Model\Wind;
-use Remdan\OpenweathermapConnector\Model\Clouds;
-use Remdan\OpenweathermapConnector\Model\Weather;
-use Remdan\OpenweathermapConnector\Model\Rain;
-use Remdan\OpenweathermapConnector\Model\Snow;
+use Remdan\Openweathermap\Model\Main;
+use Remdan\Openweathermap\Model\Wind;
+use Remdan\Openweathermap\Model\Clouds;
+use Remdan\Openweathermap\Model\Weather;
+use Remdan\Openweathermap\Model\Rain;
+use Remdan\Openweathermap\Model\Snow;
 
 final class ForecastEntry
 {
