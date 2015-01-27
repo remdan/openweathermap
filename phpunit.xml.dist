@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="tests/bootstrap.php" colors="true">
+<phpunit bootstrap="Tests/bootstrap.php" colors="true">
     <testsuites>
-        <testsuite name="OpenweathermapConnector Test">
+        <testsuite name="Openweathermap Test">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory>./src/OpenweathermapConnector/</directory>
+            <directory>./src/Openweathermap/</directory>
         </whitelist>
     </filter>
 </phpunit>
