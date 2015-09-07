@@ -179,7 +179,7 @@ Abstract class AbstractFactory
 
     /**
      * @param array $data
-     * @return Snow
+     * @return ForecastEntry
      */
     final static function createForecastEntry(array $data)
     {
@@ -229,7 +229,7 @@ Abstract class AbstractFactory
 
     /**
      * @param array $data
-     * @return Snow
+     * @return ForecastDailyEntry
      */
     final static function createForecastDailyEntry(array $data)
     {
