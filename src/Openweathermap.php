@@ -2,7 +2,8 @@
 
 namespace Remdan\Openweathermap;
 
-use Ivory\HttpAdapter\HttpAdapterInterface;
+use Http\Client\HttpClient;
+use Http\Message\MessageFactory;
 use Remdan\Openweathermap\Factory\CurrentWeatherFactory;
 use Remdan\Openweathermap\Factory\FactoryInterface;
 use Remdan\Openweathermap\Factory\ForecastDailyFactory;
@@ -15,9 +16,14 @@ use Remdan\Openweathermap\Model\ForecastDaily;
 class Openweathermap
 {
     /**
-     * @var HttpAdapterInterface
+     * @var HttpClient
      */
-    protected $httpAdapter;
+    protected $httpClient;
+
+    /**
+     * @var MessageFactory
+     */
+    protected $messageFactory;
 
     /**
      * @var FactoryRegistryInterface
@@ -45,31 +51,51 @@ class Openweathermap
     protected $unitsFormat;
 
     /**
-     * @param HttpAdapterInterface $httpAdapter
+     * Openweathermap constructor.
+     * @param HttpClient $httpClient
+     * @param MessageFactory $messageFactory
      * @param FactoryRegistryInterface $factoryRegistery
      */
     public function __construct(
-        HttpAdapterInterface $httpAdapter,
+        HttpClient $httpClient,
+        MessageFactory $messageFactory,
         FactoryRegistryInterface $factoryRegistery
     ) {
-        $this->httpAdapter = $httpAdapter;
+        $this->httpClient = $httpClient;
+        $this->messageFactory = $messageFactory;
         $this->factoryRegistery = $factoryRegistery;
     }
 
     /**
-     * @return HttpAdapterInterface
+     * @return HttpClient
      */
-    public function getHttpAdapter()
+    public function getHttpClient()
     {
-        return $this->httpAdapter;
+        return $this->httpClient;
     }
 
     /**
-     * @param HttpAdapterInterface $httpAdapter
+     * @param HttpClient $httpClient
      */
-    public function setHttpAdapter(HttpAdapterInterface $httpAdapter)
+    public function setHttpClient(HttpClient $httpClient)
     {
-        $this->httpAdapter = $httpAdapter;
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+     * @return MessageFactory
+     */
+    public function getMessageFactory()
+    {
+        return $this->messageFactory;
+    }
+
+    /**
+     * @param MessageFactory $messageFactory
+     */
+    public function setMessageFactory(MessageFactory $messageFactory)
+    {
+        $this->messageFactory = $messageFactory;
     }
 
     /**
@@ -181,7 +207,12 @@ class Openweathermap
     {
         $url = $this->reworkUrl($url);
 
-        $content = (string)$this->getHttpAdapter()->get($url)->getBody();
+        $request = $this->getMessageFactory()->createRequest(
+            'GET',
+            $url
+        );
+
+        $content = (string)$this->getHttpClient()->sendRequest($request)->getBody();
 
         return $content;
     }
