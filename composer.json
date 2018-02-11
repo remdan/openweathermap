@@ -12,12 +12,12 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "egeloen/http-adapter": "0.5.*"
+    "php-http/httplug": "v1.*"
   },
   "require-dev": {
   },
   "suggest": {
-    "guzzle/guzzle": "3.9.*"
+    "php-http/guzzle6-adapter": "v1.1.*"
   },
   "autoload": {
     "psr-4": { "Remdan\\Openweathermap\\": "src/" }
