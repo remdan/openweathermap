@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "php-http/httplug-bundle": "1.8.*",
+    "php-http/httplug-bundle": "1.8.*"
   },
   "require-dev": {
   },
