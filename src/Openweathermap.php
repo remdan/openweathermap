@@ -2,8 +2,8 @@
 
 namespace Remdan\Openweathermap;
 
-use Http\Client\HttpClient;
-use Http\Message\MessageFactory;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\MessageFactoryDiscovery;
 use Remdan\Openweathermap\Factory\CurrentWeatherFactory;
 use Remdan\Openweathermap\Factory\FactoryInterface;
 use Remdan\Openweathermap\Factory\ForecastDailyFactory;
@@ -16,12 +16,12 @@ use Remdan\Openweathermap\Model\ForecastDaily;
 class Openweathermap
 {
     /**
-     * @var HttpClient
+     * @var HttpClientDiscovery
      */
     protected $httpClient;
 
     /**
-     * @var MessageFactory
+     * @var MessageFactoryDiscovery
      */
     protected $messageFactory;
 
@@ -52,17 +52,13 @@ class Openweathermap
 
     /**
      * Openweathermap constructor.
-     * @param HttpClient $httpClient
-     * @param MessageFactory $messageFactory
      * @param FactoryRegistryInterface $factoryRegistery
      */
     public function __construct(
-        HttpClient $httpClient,
-        MessageFactory $messageFactory,
         FactoryRegistryInterface $factoryRegistery
     ) {
-        $this->httpClient = $httpClient;
-        $this->messageFactory = $messageFactory;
+        $this->httpClient = HttpClientDiscovery::find();
+        $this->messageFactory = MessageFactoryDiscovery::find();
         $this->factoryRegistery = $factoryRegistery;
     }
 
